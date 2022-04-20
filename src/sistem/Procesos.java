@@ -33,15 +33,16 @@ public class Procesos {
 		String nombre=JOptionPane.showInputDialog("ingrese su nombre");
 		do {
 			codProducto=Integer.parseInt(JOptionPane.showInputDialog(listaDeProductos));
-			String guarda=guardarInfo(codProducto,nombre);
-			mostrarDatosCompra();
+			if(codProducto>0 && codProducto<3) {
+				String guarda=guardarInfo(codProducto,nombre);
+				mostrarDatosCompra();
+			}
 		} while (codProducto>0 && codProducto<3);
 		
 	}
 
 	private String guardarInfo(int codProducto, String nombre) {
 		int valorT = 0;
-		int idProducto=0;
 		int cantProductos=Integer.parseInt(JOptionPane.showInputDialog("que cantidad de este producto desea comprar"));
 		
 		switch (codProducto) {
