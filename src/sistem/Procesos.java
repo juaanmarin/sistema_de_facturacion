@@ -15,6 +15,7 @@ public class Procesos {
 		
 		int cod=0;
 		do {
+			miAlmacenamiento.borrarDatosAnt();
 			cod=Integer.parseInt(JOptionPane.showInputDialog(menu));
 			if (cod==1) {
 				registrar();
@@ -34,14 +35,14 @@ public class Procesos {
 		do {
 			codProducto=Integer.parseInt(JOptionPane.showInputDialog(listaDeProductos));
 			if(codProducto>0 && codProducto<3) {
-				String guarda=guardarInfo(codProducto,nombre);
-				mostrarDatosCompra();
+				guardarInfo(codProducto);
 			}
 		} while (codProducto>0 && codProducto<3);
-		
+		miAlmacenamiento.guardarCliente(nombre, miAlmacenamiento.obtenerDatosCompraGeneral());
+		mostrarDatosCompra();
 	}
 
-	private String guardarInfo(int codProducto, String nombre) {
+	private void guardarInfo(int codProducto) {
 		int valorT = 0;
 		int cantProductos=Integer.parseInt(JOptionPane.showInputDialog("que cantidad de este producto desea comprar"));
 		
@@ -59,7 +60,7 @@ public class Procesos {
 		listaDeValores.add(cantProductos);
 		listaDeValores.add(valorT);
 		
-		return miAlmacenamiento.guardarCliente(nombre, listaDeValores);
+		miAlmacenamiento.compra(listaDeValores);
 		
 	}
 	
